@@ -1,5 +1,4 @@
-import Input from "../../Input/Input";
-import Separator from "../../Separator/Separator";
+import { Input } from "@chakra-ui/react";
 
 function Contato() {
   return (
@@ -9,16 +8,14 @@ function Contato() {
           <h1 className="text-2xl font-medium tracking-tight">
             Entre em contato
           </h1>
-
-          <Separator />
+          <span className="block border h-[1px] w-full my-2" />
 
           <div className="flex flex-col gap-2 mt-2">
             <Input type="text" placeholder="Nome" autoFocus />
             <Input type="email" placeholder="E-mail" />
             <Input type="tel" placeholder="Telefone" />
           </div>
-
-          <Separator />
+          <span className="block border h-[1px] w-full my-2" />
 
           <button
             type="button"
