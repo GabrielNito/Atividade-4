@@ -1,9 +1,22 @@
+import { useState } from "react";
 import TarefasInserir from "./TarefasInserir";
 import TarefasLista from "./TarefasLista";
 
-const tarefaslist = ["Tarefa 1", "Tarefa 2", "Tarefa 3"];
+interface Tarefa {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
 const Tarefas = () => {
+  const [tasks, setTasks] = useState<Tarefa[]>([]);
+
+  function atualizarTarefas() {
+    fetch("https://workshop-node-ts-intro-exemplo1.onrender.com/task")
+      .then((dados) => dados.json())
+      .then((tarefas) => setTasks(tarefas));
+  }
+
   return (
     <>
       <div className="h-screen flex flex-col justify-center items-center">
@@ -13,10 +26,10 @@ const Tarefas = () => {
           </h1>
           <span className="block border h-[1px] w-full my-2" />
 
-          <TarefasInserir />
+          <TarefasInserir atualizarTarefas={atualizarTarefas} />
           <span className="block border h-[1px] w-full my-4" />
 
-          <TarefasLista tarefas={tarefaslist} />
+          <TarefasLista tasks={tasks} atualizarTarefas={atualizarTarefas} />
         </div>
       </div>
     </>
